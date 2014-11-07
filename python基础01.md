@@ -1,3 +1,8 @@
+
+简单的‘Hello World!’
+
+ 
+
 Python命令行
 
 假设你已经安装好了Python, 那么在Linux命令行输入:
@@ -31,10 +36,8 @@ $python hello.py
 来运行hello.py。可以看到Python随后输出
 
 Hello World!
+
  
-
-脚本
-
 我们还可以把Python程序hello.py改成一个可执行的脚本，直接执行：
 
 #!/usr/bin/env python
