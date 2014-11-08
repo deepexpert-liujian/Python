@@ -1,144 +1,145 @@
--- coding: UTF-8 --
-#ÊµÏÖ¼òµ¥Í¨Ñ¶Â¼ÏµÍ³
+# -*- coding: UTF-8 -*-
+#å®ç°ç®€å•é€šè®¯å½•ç³»ç»Ÿ
 import os
 import pickle
-#ÅĞ¶ÏÍ¨Ñ¶Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚ´´½¨µÄ
+#åˆ¤æ–­é€šè®¯å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ›å»ºçš„
 if os.path.exists(r'D:\person.txt') == False:
-f = open('D:\person.txt', 'w')
-temp = {'total': 0}
-pickle.dump(temp, f)
-f.close()
+    f = open('D:\person.txt', 'w')
+    temp = {'total': 0}
+    pickle.dump(temp, f)
+    f.close()
 else:
-pass
+    pass
 
-#Ìí¼ÓÁªÏµÈË
+#æ·»åŠ è”ç³»äºº
 def add():
-f = open('D:\person.txt', 'r')
-A = pickle.load(f)
-f.close()
-count = 0
-name = raw_input('ÇëÊäÈëÒªÌí¼ÓµÄÁªÏµÈËµÄĞÕÃû£º')
-for key in A.keys():
-count += 1
-if key == name and count <= A['tatal'] + 1:
-print 'Ìí¼ÓÊ§°Ü£¬¸ÄÁªÏµÈËÒÑ´æÔÚ'
-break
-if count == A['tatal'] + 1 and key != name:
-number = raw_input('ÇëÊäÈëºÅÂë:')
-member = {name:number}
-A['tatal'] += 1
-A.update(member)
-f = open('D:\person.txt', 'w')
-pickle.dump(A, f)
-f.close()
-print 'Success!'
-break
+    f = open('D:\person.txt', 'r')
+    A = pickle.load(f)
+    f.close()
+    count = 0
+    name = raw_input('è¯·è¾“å…¥è¦æ·»åŠ çš„è”ç³»äººçš„å§“åï¼š')
+    for key in A.keys():
+        count += 1
+        if key == name and count <= A['tatal'] + 1:
+            print 'æ·»åŠ å¤±è´¥ï¼Œæ”¹è”ç³»äººå·²å­˜åœ¨'
+            break
+        if count == A['tatal'] + 1 and key != name:
+            number = raw_input('è¯·è¾“å…¥å·ç :')
+            member = {name:number}
+            A['tatal'] += 1
+            A.update(member)
+            f = open('D:\person.txt', 'w')
+            pickle.dump(A, f)
+            f.close()
+            print 'Success!'
+            break
 
-#É¾³ı
+#åˆ é™¤
 def delete(name):
-f = open('D:\Person.txt', 'r')
-A = pickle.load(f)
-f.close()
-count = 0
-for key in A.keys():
-count += 1
-if key == name and count <= A['total'] + 1:
-A.pop(name)
-A['total'] -= 1
-f = open('d:\Person.txt', 'w')
-pickle.dump(A, f)
-f.close()
-print("É¾³ı³É¹¦!")
-break
-if count == A['total'] + 1 and key != name:
-print("ÁªÏµÈË²»´æÔÚ£¡ÎŞ·¨É¾³ı£¡")
-break
-#ÏÔÊ¾ËùÓĞÁªÏµÈË
+    f = open('D:\Person.txt', 'r')
+    A = pickle.load(f)
+    f.close()
+    count = 0
+    for key in A.keys():
+        count += 1
+        if key == name and count <= A['total'] + 1:
+            A.pop(name)
+            A['total'] -= 1
+            f = open('d:\Person.txt', 'w')
+            pickle.dump(A, f)
+            f.close()
+            print("åˆ é™¤æˆåŠŸ!")
+            break
+        if count == A['total'] + 1 and key != name:
+            print("è”ç³»äººä¸å­˜åœ¨ï¼æ— æ³•åˆ é™¤ï¼")
+            break
+#æ˜¾ç¤ºæ‰€æœ‰è”ç³»äºº
 def show_all():
-f = open('d:\person.txt', 'r')
-A = pickle.load(f)
-print("Ò»¹²ÓĞ{}¸öÁªÏµÈË.".format(A['total']))
-for key in A.keys():
-if key != 'total':
-print("{""}:{""}".format(key, A[key]))
-f.close()
-#²éÕÒ
+    f = open('d:\person.txt', 'r')
+    A = pickle.load(f)
+    print("ä¸€å…±æœ‰{}ä¸ªè”ç³»äºº.".format(A['total']))
+    for key in A.keys():
+        if key != 'total':
+            print("{""}:{""}".format(key, A[key]))
+    f.close()
+#æŸ¥æ‰¾
 def search(name):
-f = open('D:\person.txt', 'r')
-A = pickle.load(f)
-count = 0
-for key in A.keys():
-count += 1
-if key == name and count <= A['total']+1:
-print("{}µÄºÅÂëÊÇ: {}".format(name, A[key]))
-break
-if count == A['total']+1 and key != name:
-print("ÁªÏµÈË²»´æÔÚ!")
-break
-f.close()
+    f = open('D:\person.txt', 'r')
+    A = pickle.load(f)
+    count = 0
+    for key in A.keys():
+        count += 1
+        if key == name and count <= A['total']+1:
+            print("{}çš„å·ç æ˜¯: {}".format(name, A[key]))
+            break
+        if count == A['total']+1 and key != name:
+            print("è”ç³»äººä¸å­˜åœ¨!")
+            break
+    f.close()
 
-#ĞŞ¸Ä
+#ä¿®æ”¹
 def change():
-x = input("ÇëÊäÈëËùÒªĞŞ¸ÄÁªÏµÈËĞÕÃû:")
-f = open('d:\person.txt', 'r')
-A = pickle.load(f)
-f.close()
-count = 0
-for key in A.keys():
-count += 1
-if key==x and count <= A['total']+1:
-y = input("ÇëÊäÈëĞŞºóµÄºÅÂë:")
-A[key] = y
-f=open('d:\person.txt', 'w')
-pickle.dump(A, f)
-f.close()
-print "ĞŞ¸Ä³É¹¦!"
-break
-if count == A['total']+1 and key != name:
-print "ÁªÏµÈË²»´æÔÚ£¡"
-break
+    x = input("è¯·è¾“å…¥æ‰€è¦ä¿®æ”¹è”ç³»äººå§“å:")
+    f = open('d:\person.txt', 'r')
+    A = pickle.load(f)
+    f.close()
+    count = 0
+    for key in A.keys():
+        count += 1
+        if key==x and count <= A['total']+1:
+            y = input("è¯·è¾“å…¥ä¿®åçš„å·ç :")
+            A[key] = y
+            f=open('d:\person.txt', 'w')
+            pickle.dump(A, f)
+            f.close()
+            print "ä¿®æ”¹æˆåŠŸ!"
+            break
+        if count == A['total']+1 and key != name:
+            print "è”ç³»äººä¸å­˜åœ¨ï¼"
+            break
 
-#ÍË³öÍ¨Ñ¶Â¼
+#é€€å‡ºé€šè®¯å½•
 def exit():
-exec "quit()"
-#½çÃæ
+    exec "quit()"
+#ç•Œé¢
 def instructions():
-print ("----------------------------------")
-print ("ÏÔÊ¾ÌáÊ¾ĞÅÏ¢: *")
-print ("ÏÔÊ¾ËùÓĞÁªÏµÈË:0")
-print ("²éÕÒÁªÏµÈË: 1")
-print ("Ìí¼ÓÁªÏµÈË: 2")
-print ("É¾³ıÁªÏµÈË: 3")
-print ("¸ü¸ÄÁªÏµÈË×ÊÁÏ:4")
-print ("ÍË³öÍ¨Ñ¶Â¼: 5")
-print ("----------------------------------")
+    print ("----------------------------------")
+    print ("æ˜¾ç¤ºæç¤ºä¿¡æ¯:  *")
+    print ("æ˜¾ç¤ºæ‰€æœ‰è”ç³»äºº:0")
+    print ("æŸ¥æ‰¾è”ç³»äºº:    1")
+    print ("æ·»åŠ è”ç³»äºº:    2")
+    print ("åˆ é™¤è”ç³»äºº:    3")
+    print ("æ›´æ”¹è”ç³»äººèµ„æ–™:4")
+    print ("é€€å‡ºé€šè®¯å½•:    5")
+    print ("----------------------------------")
 
-#Ö÷³ÌĞò
+#ä¸»ç¨‹åº
 instructions()
 while True:
-x = raw_input("ÇëÊäÈëÄúµÄÑ¡Ôñ:")
-if x == '2':
-add()
-continue
-if x == '0':
-show_all()
-continue
-if x == '5':
-exit()
-continue
-if x == '1':
-name = raw_input("ÇëÊäÈëËùÒª²éÕÒÁªÏµÈËµÄĞÕÃû:")
-search(name)
-continue
-if x == '3':
-name = raw_input("ÇëÊäÈëËùÒªÉ¾³ıÁªÏµÈËµÄĞÕÃû:")
-delete(name)
-continue
-if x == '4':
-change()
-continue
-if x == '*':
-instructions()
-else:
-print("ÊäÈëÑ¡Ïî²»´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡")
-continue
+    x = raw_input("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©:")
+    if x == '2':
+        add()
+        continue
+    if x == '0':
+        show_all()
+        continue
+    if x == '5':
+        exit()
+        continue
+    if x == '1':
+        name = raw_input("è¯·è¾“å…¥æ‰€è¦æŸ¥æ‰¾è”ç³»äººçš„å§“å:")
+        search(name)
+        continue
+    if x == '3':
+        name = raw_input("è¯·è¾“å…¥æ‰€è¦åˆ é™¤è”ç³»äººçš„å§“å:")
+        delete(name)
+        continue
+    if x == '4':
+        change()
+        continue
+    if x == '*':
+        instructions()
+    else:
+        print("è¾“å…¥é€‰é¡¹ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼")
+        continue
+
